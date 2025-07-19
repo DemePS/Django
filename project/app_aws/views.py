@@ -1,11 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import CreateUserForm
+
 
 # Create your views here.
 def index(request):
     return render(request, 'app_aws/index.html')
 
 def register(request):
-    return render(request, 'app_aws/register.html')
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('my-login')
+    else:
+        form = CreateUserForm()
+        context = {'form': form}
+        return render(request, 'app_aws/register.html', context)
 
 def my_login(request):
     return render(request, 'app_aws/my-login.html')
