@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm
+from .forms import CreateUserForm, LoginForm
 from .models import Profile
-
+from django.contrib.auth.models import auth
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -21,11 +23,31 @@ def register(request):
         return render(request, 'app_aws/register.html', context)
 
 def my_login(request):
+    form= LoginForm()
+    if request.method == 'POST':
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(request,username=username, password=password)
+            if user is not None:
+                auth.login(request, user)
+                return redirect("dashboard")
+            
+    context = {'form': form}
+    return render(request, 'app_aws/my-login.html', context=context)
+
     return render(request, 'app_aws/my-login.html')
 
+@login_required(login_url='my-login')
 def dashboard(request):
     return render(request, 'app_aws/dashboard.html')
 
+@login_required(login_url='my-login')
 def profile_management(request):
     return render(request, 'app_aws/profile-management.html')
+
+def user_logout(request):
+    auth.logout(request)
+    return redirect("index")
 
