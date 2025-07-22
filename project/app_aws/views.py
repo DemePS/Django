@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import CreateUserForm, LoginForm, UpdateUserForm
 from .models import Profile
-from django.contrib.auth.models import auth
+from django.contrib.auth.models import auth, User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 
@@ -37,7 +37,10 @@ def my_login(request):
     context = {'form': form}
     return render(request, 'app_aws/my-login.html', context=context)
 
-    return render(request, 'app_aws/my-login.html')
+def user_logout(request):
+    auth.logout(request)
+    return redirect("index")
+
 
 @login_required(login_url='my-login')
 def dashboard(request):
@@ -54,7 +57,10 @@ def profile_management(request):
     context = {'user_form': user_form}  
     return render(request, 'app_aws/profile-management.html', context=context)
 
-def user_logout(request):
-    auth.logout(request)
-    return redirect("index")
-
+def delete_account(request):
+    if request.method == 'POST':
+        deleteUser = User.objects.get(username=request.user.username)
+        deleteUser.delete()
+        return redirect("index")
+    
+    return render(request, 'app_aws/delete-account.html')
