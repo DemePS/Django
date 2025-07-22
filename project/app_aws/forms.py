@@ -16,3 +16,11 @@ class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput()) #attrs={'class': 'form-control', 'placeholder': 'Username'}
     password = forms.CharField(widget=PasswordInput()) #attrs={'class': 'form-control', 'placeholder': 'Password'}
     
+
+#Profile Mangement - Update User Form
+class UpdateUserForm(forms.ModelForm):
+    password=None
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+        exclude = ['password1', 'password2']
