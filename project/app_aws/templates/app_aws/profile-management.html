@@ -24,6 +24,17 @@
         <input class="btn btn-primary" type="submit" value="Update Profile">
     </form>
 </div>
+<div class="container bg-white shadow-md p-5 forms-layout mt-4">
+    <h2> Update profile picture</h2>
+    <form method="post" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+       
+        {{ profile_form|crispy }}
+      
+       
+        <br>
+        <input class="btn btn-primary" type="submit" value="Submit">
+    </form>
 <div class="container text-center mt-4">
     <a href="{% url 'delete-account' %}" class="btn btn-danger">Delete Account</a>
 </div>

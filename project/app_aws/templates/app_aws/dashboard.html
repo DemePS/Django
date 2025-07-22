@@ -11,7 +11,8 @@
 <body>
 <div class="container bg-white shadow-md p-5 forms-layout">
 <h1> Dashboard </h1>
-<p>Welcome to the AWS App!</p>
+<p> Welcome {{ user}} ! </p>
+<img style="width: 150px;" src="{{ profilePic.profile_picture.url}}">
 <a href="{% url 'profile-management' %}" class="btn btn-primary">Profile Management</a>
 <br> <br>
 <a href="{% url 'user-logout' %}" class="btn btn-danger">Logout</a>
