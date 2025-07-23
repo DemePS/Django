@@ -10,15 +10,9 @@
     <script src="{% static 'js/app.js' %}"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
-    <a class="navbar-brand main-heading" href="{% url 'index' %}">
-        &nbsp; AWS App
-    </a>
-</nav>
-<br>
-
+{% include 'app_aws/navbar.html'%}
 <div class="container bg-white shadow-md p-5 forms-layout">
-<h1> Profile Management</h1>
+<h1> Update user info</h1>
     <br>
     <form method="post" autocomplete="off">
         {% csrf_token %}
@@ -41,7 +35,10 @@
         <br>
         <input class="btn btn-primary" type="submit" value="Submit">
     </form>
-<div class="container text-center mt-4">
+</div>
+<div class="container bg-white shadow-md p-5 forms-layout mt-4">
+    <h2> Account Deletion</h2>
+    <br>
     <a href="{% url 'delete-account' %}" class="btn btn-danger">Delete Account</a>
 </div>
 </body>

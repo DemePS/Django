@@ -10,6 +10,7 @@
     <script src="{% static 'js/app.js' %}"></script>
 </head>
 <body>
+{% include 'app_aws/navbar.html'%}
 <div class="container bg-white shadow-md p-5 forms-layout">
 
     <h1> Delete account </h1>
@@ -18,7 +19,7 @@
         <p>Are you sure you want to delete your account?</p>
         <a href="{% url 'profile-management' %}" class="btn btn-secondary">Cancel</a>
         <br> <br>
-        <input class="btn btn-danger" type="submit" value="Submit">
+        <input class="btn btn-danger" type="submit" value="Delete Account">
     </form>
 </div>
 

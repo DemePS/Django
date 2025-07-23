@@ -1,4 +1,5 @@
 {% load static %}
+
 <html>
 <head>
     <title>Dashboard | AWS App</title>
@@ -9,19 +10,12 @@
     <script src="{% static 'js/app.js' %}"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
-    <a class="navbar-brand main-heading" href="{% url 'index' %}">
-        &nbsp; AWS App
-    </a>
-</nav>
+{% include 'app_aws/navbar.html'%}
 <br>
 <div class="container bg-white shadow-md p-5 forms-layout">
 <h1> Dashboard </h1>
 <p> Welcome {{ user}} ! </p>
 <img style="width: 150px;" src="{{ profilePic.profile_picture.url}}">
-<a href="{% url 'profile-management' %}" class="btn btn-primary">Profile Management</a>
-<br> <br>
-<a href="{% url 'user-logout' %}" class="btn btn-danger">Logout</a>
 </div>
 </body>
 </html>
