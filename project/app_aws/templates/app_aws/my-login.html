@@ -10,6 +10,12 @@
     <script src="{% static 'js/app.js' %}"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+    <a class="navbar-brand main-heading" href="{% url 'index' %}">
+        &nbsp; AWS App
+    </a>
+</nav>
+<br>
 <div class="container bg-white shadow-md p-5 forms-layout">
 
     <h1> My login </h1>
@@ -17,8 +23,10 @@
         {% csrf_token %}
         {{ form|crispy }}
         <br>
-        <input class="btn btn-primary" type="submit" value="Submit">
+        <input class="btn btn-primary w-100" type="submit" value="Login">
     </form>
+    <br>
+    <p> Don't have an account? <a href="{% url 'register' %}">Register</a> </p>
 </div>
 </body>
 </html>

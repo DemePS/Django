@@ -11,6 +11,12 @@
     <script src="{% static 'js/app.js' %}"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+    <a class="navbar-brand main-heading" href="{% url 'index' %}">
+        &nbsp; AWS App
+    </a>
+</nav>
+<br>
 <div class="container bg-white shadow-md p-5 forms-layout">
     <h1> Register </h1>
     <br>
@@ -24,8 +30,12 @@
         {{ form.password1|as_crispy_field }}
         <br>
         {{ form.password2|as_crispy_field }}
-        <input class="btn btn-primary" type="submit" value="Submit">
+        <br>
+        <input class="btn btn-primary w-100" type="submit" value="Create Account">
     </form>
+    <br>
+    <p> Already have an account? <a href="{% url 'my-login' %}">Login</a> </p>
+    
 </div>
 
 </body>
